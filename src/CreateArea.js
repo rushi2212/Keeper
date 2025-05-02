@@ -17,6 +17,9 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
+    if (note.title.trim() === "" || note.content.trim() === "") {
+      return; 
+    }
     props.onAdd(note);
     setNote({
       title: "",
@@ -41,7 +44,7 @@ function CreateArea(props) {
           placeholder="Take a note..."
           rows="3"
         />
-        <button onClick={submitNote}>Add</button>
+        <button onClick={submitNote} disabled={!note.title.trim() || !note.content.trim()}>Add</button>
       </form>
     </div>
   );
